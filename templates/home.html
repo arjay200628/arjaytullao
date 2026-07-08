@@ -5,14 +5,20 @@
 {% block content %}
 <div class="hero" style="min-height: 220px; display: flex; flex-direction: column; justify-content: center;">
     <h1>Welcome to My Portfolio</h1>
-    <p>Hello! I am Arjay Tullao.</p>
-    <p>This page is my portfolio that includes information about me, my projects, and contact me.</p>
+    {% if personal_info %}
+    <p>Hello! I am {{ personal_info.first_name }} {{ personal_info.last_name }}.</p>
+    <p>{{ personal_info.summary }}</p>
+    {% else %}
+    <p>Hello! I am a developer building meaningful projects.</p>
+    {% endif %}
 </div>
 
 <div class="card" style="min-height: 140px;">
     <h2>Short Introduction</h2>
-    <p>I am someone who likes solving problems, trying new ideas, and continuously improving myself.</p>
-    <p>My goal is to become a skilled computer engineer and use my knowledge to create useful and meaningful technology in the future.</p>
-    <p>I am currently a 3rd year Computer Engineering student at Holy Angel University (HAU).</p>
+    {% if personal_info %}
+    <p>{{ personal_info.summary }}</p>
+    {% else %}
+    <p>My goal is to keep improving as a programmer and build useful technology.</p>
+    {% endif %}
 </div>
 {% endblock %}

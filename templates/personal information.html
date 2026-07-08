@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Personal Information | My Portfolio{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Personal Information</h1>
+    {% if personal_info %}
+    <p><strong>First Name:</strong> {{ personal_info.first_name }}</p>
+    <p><strong>Middle Name:</strong> {{ personal_info.middle_name }}</p>
+    <p><strong>Last Name:</strong> {{ personal_info.last_name }}</p>
+    <p><strong>Contact Number:</strong> {{ personal_info.contact_number }}</p>
+    <p><strong>Email:</strong> {{ personal_info.email }}</p>
+    <p><strong>Address:</strong> {{ personal_info.address }}</p>
+    {% else %}
+    <p>No personal information has been added yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

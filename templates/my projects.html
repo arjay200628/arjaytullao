@@ -5,18 +5,16 @@
 {% block content %}
 <h1>My Projects</h1>
 
-<div class="card" style="min-height: 140px;">
-    <h2>Project 1: Simple Calculator</h2>
-    <p>I made a simple calculator in Dev C++ together with my groupmates.</p>
-</div>
-
-<div class="card" style="min-height: 140px;">
-    <h2>Project 2: ATM Machine</h2>
-    <p>I also worked on an ATM machine project in Dev C++ alongside my groupmates.</p>
-</div>
-
-<div class="card" style="min-height: 140px;">
-    <h2>Project 3: Portfolio Website</h2>
-    <p>I created this portfolio using Django to show my work and share a little about myself.</p>
-</div>
+{% if projects %}
+    {% for project in projects %}
+    <div class="card" style="min-height: 140px;">
+        <h2>{{ project.project_name }}</h2>
+        <p><a href="{% url 'project_detail' project.pk %}">View details</a></p>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="card">
+        <p>No projects have been added yet.</p>
+    </div>
+{% endif %}
 {% endblock %}

@@ -5,8 +5,12 @@
 {% block content %}
 <div class="card" style="min-height: 140px; max-width: 700px; margin: 40px auto; text-align: center;">
     <h1>Contact Me</h1>
-    <p><strong>Email:</strong> altullao1@student.hau.edu.ph</p>
-    <p><strong>Phone:</strong> 09974518934</p>
-    <p><strong>GitHub:</strong> https://github.com/arjay200628</p>
+    {% if personal_info %}
+    <p><strong>Email:</strong> {{ personal_info.email }}</p>
+    <p><strong>Phone:</strong> {{ personal_info.contact_number }}</p>
+    <p><strong>Address:</strong> {{ personal_info.address }}</p>
+    {% else %}
+    <p>No contact information has been added yet.</p>
+    {% endif %}
 </div>
 {% endblock %}

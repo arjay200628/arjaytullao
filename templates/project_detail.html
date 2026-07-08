@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.project_name }} | My Portfolio{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>{{ project.project_name }}</h1>
+    <p><strong>Description:</strong> {{ project.description }}</p>
+    {% if project.link %}
+    <p><strong>Link:</strong> <a href="{{ project.link }}">{{ project.link }}</a></p>
+    {% endif %}
+    <p><a href="{% url 'projects' %}">Back to projects</a></p>
+</div>
+{% endblock %}
