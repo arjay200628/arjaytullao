@@ -25,5 +25,9 @@ urlpatterns = [
     path('personal-information/', views.personal_information, name='personal_information'),
     path('my-projects/', views.project_list, name='projects'),
     path('project/<int:pk>/', views.project_detail, name='project_detail'),
-    path('contacts/', views.contacts, name='contacts'),
+    path('new-project/', views.project_create, name='project_create'),
+    path('contacts/', views.contact_inquiry, name='contacts'),
+    path('testimonials/', views.TestimonyListView.as_view(), name='testimonials'),
+    path('testimony/<int:pk>/', views.testimony_detail, name='testimony_detail'),
+    path('leave-testimony/', views.testimony_create, name='testimony_create'),
 ]

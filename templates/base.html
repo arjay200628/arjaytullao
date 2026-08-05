@@ -1,137 +1,205 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg-soft: #EEF7EE;
+            --card-bg: #FFFFFF;
+            --primary-green: #14532D;
+            --secondary-green: #166534;
+            --accent-green: #22C55E;
+            --border-soft: #D1E7DD;
+            --text-dark: #1F2937;
+            --text-muted: #475569;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f4fff6;
-            color: #1f3d2a;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-soft);
+            color: var(--text-dark);
         }
 
         .navbar {
-            background-color: #000000;
-            padding: 20px 35px;
-            display: flex;
-            justify-content: center;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-soft);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            color: var(--primary-green) !important;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-green) !important;
+        }
+
+        .card-custom,
+        .form-card,
+        .stat-card,
+        .testimonial-card,
+        .contact-card,
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-soft);
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(31, 41, 55, 0.08);
+        }
+
+        .hero-card {
+            border-radius: 16px;
+        }
+
+        .hero-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background-color: var(--primary-green);
+            color: #ffffff;
+            display: inline-flex;
             align-items: center;
-            position: relative;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-
-        .brand {
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-            margin: 0;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 12px;
-            margin-left: auto;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            padding: 6px 10px;
-            border-radius: 4px;
-        }
-
-        .brand {
-            color: white;
-        }
-
-        .navbar a:hover {
-            background-color: rgba(255,255,255,0.2);
-        }
-
-        .container {
-            width: 98%;
-            max-width: 1600px;
-            min-height: 75vh;
-            margin: 30px auto;
-            padding: 50px;
-            background-color: transparent;
-            border-radius: 0;
-            box-shadow: none;
-            box-sizing: border-box;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
-            padding: 40px;
-            border-radius: 10px;
-            margin-bottom: 24px;
-            min-height: 220px;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-            text-align: center;
-            border: 1px solid #c8e6c9;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
-        .hero h1 {
-            font-size: 32px;
-            margin-bottom: 12px;
+        .badge-soft {
+            background-color: rgba(34, 197, 94, 0.14);
+            color: var(--primary-green);
+            font-weight: 600;
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
         }
 
-        .hero p {
-            font-size: 20px;
-            line-height: 1.6;
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 0.75rem;
         }
 
-        .card {
-            border: 1px solid #c8e6c9;
-            padding: 22px;
-            border-radius: 10px;
-            margin-bottom: 18px;
-            background-color: #fafdfa;
-            min-height: 140px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        .section-text {
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
         }
 
-        .card h1, .card h2 {
-            font-size: 26px;
-            margin-top: 0;
+        .project-title,
+        .testimonial-title,
+        .contact-title {
+            color: var(--primary-green);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
         }
 
-        .card p, .card li {
-            font-size: 18px;
-            line-height: 1.6;
+        .btn-primary-custom {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+            color: #ffffff;
         }
 
-        .skills {
-            padding-left: 20px;
+        .btn-primary-custom:hover {
+            background-color: var(--secondary-green);
+            border-color: var(--secondary-green);
         }
 
+        .btn-outline-custom {
+            color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+
+        .btn-outline-custom:hover {
+            background-color: rgba(34, 197, 94, 0.12);
+            color: var(--primary-green);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--border-soft);
+            border-radius: 12px;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--secondary-green);
+            box-shadow: 0 0 0 0.15rem rgba(34, 197, 94, 0.18);
+            background-color: #ffffff;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .testimonial-quote {
+            font-size: 2.25rem;
+            color: var(--accent-green);
+            line-height: 0.8;
+        }
+
+        .footer-note {
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="brand">My Portfolio</div>
-        <div class="nav-links">
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'about_me' %}">About Me</a>
-            <a href="{% url 'personal_information' %}">Personal Info</a>
-            <a href="{% url 'projects' %}">My Projects</a>
-            <a href="{% url 'contacts' %}">Contacts</a>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">My Portfolio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about_me' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'personal_information' %}">Info</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}">Contact</a></li>
+            </ul>
         </div>
     </div>
+</nav>
 
-    <div class="container">
-        {% block content %}{% endblock %}
-    </div>
+<main class="container py-5">
+    {% block content %}{% endblock %}
+</main>
 
+<footer class="container text-center py-4">
+    <p class="footer-note mb-0">{{ personal_info.first_name|default:'My' }} {{ personal_info.last_name|default:'Portfolio' }} &bull; Built with Django and Bootstrap.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

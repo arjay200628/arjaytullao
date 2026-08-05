@@ -1,16 +1,25 @@
 # Django Portfolio Project
 
-This is a beginner-friendly Django portfolio website that uses a database to display personal information and projects.
+This is a beginner-friendly Django portfolio website built for a Computer Engineering student project. It uses Django models and templates to display personal information, projects, testimonials, and a contact form.
 
 ## Features
 
-- Home page
-- About Me page
-- Personal Information page
-- Projects list page
-- Project detail page
-- Contact page
-- Database-backed content using Django models
+- Home page with hero section, skills, and portfolio statistics
+- About Me page with education and interests
+- Personal Information page with user details
+- Projects page with database-powered project cards
+- Project detail page with project description and link
+- Contact page with contact information and inquiry form
+- Testimonials section with user-submitted feedback
+- Clean Bootstrap 5 layout and responsive design
+
+## Technologies
+
+- Python 3
+- Django
+- SQLite
+- Bootstrap 5
+- Django templates
 
 ## How to run the project
 
@@ -47,15 +56,31 @@ This is a beginner-friendly Django portfolio website that uses a database to dis
    http://127.0.0.1:8000/
    ```
 
+## Admin access
+
+To manage models and add content through the Django admin site, create a superuser:
+
+```bash
+python manage.py createsuperuser
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000/admin/
+```
+
 ## Project structure
 
 - `manage.py` — Django command-line utility
-- `myproject/` — Project settings, URLs, views, and models
-- `templates/` — HTML templates for each page
-- `static/` — Static files such as CSS and JavaScript
+- `myproject/` — Django application folder with settings, URLs, views, and models
+- `templates/` — HTML templates used by views
+- `static/` — Local static files
+- `db.sqlite3` — SQLite database file
 
 ## Notes
 
-- The project uses function-based views.
-- The portfolio content is stored in the database through Django models.
-- The project detail page shows the project description and a clickable link.
+- All styling uses Bootstrap 5 and inline `<style>` tags in templates.
+- No external CSS files or JavaScript libraries were added.
+- The backend logic, models, and URLs are unchanged by the visual redesign.
+- Use the admin site to populate projects, testimonials, and personal information.

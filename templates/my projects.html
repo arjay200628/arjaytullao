@@ -3,18 +3,35 @@
 {% block title %}My Projects | My Portfolio{% endblock %}
 
 {% block content %}
-<h1>My Projects</h1>
+<section class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-column flex-md-row gap-3">
+        <div>
+            <h2 class="section-title">My Projects</h2>
+            <p class="section-text">A selection of projects that highlight my learning and practical skills.</p>
+        </div>
+    </div>
 
-{% if projects %}
-    {% for project in projects %}
-    <div class="card" style="min-height: 140px;">
-        <h2>{{ project.project_name }}</h2>
-        <p><a href="{% url 'project_detail' project.pk %}">View details</a></p>
+    <div class="row g-4">
+        {% if projects %}
+            {% for project in projects %}
+            <div class="col-md-6">
+                <div class="project-card h-100 p-4">
+                    <h5 class="project-title">{{ project.project_name }}</h5>
+                    <p class="text-muted">{{ project.description|truncatewords:25 }}</p>
+                    <div class="mb-3">
+                        <span class="badge-soft me-2">{{ project.tech_stack }}</span>
+                    </div>
+                    <a href="{% url 'project_detail' project.pk %}" class="btn btn-outline-custom">View Details</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="project-card p-4">
+                    <p class="mb-0">No projects have been added yet.</p>
+                </div>
+            </div>
+        {% endif %}
     </div>
-    {% endfor %}
-{% else %}
-    <div class="card">
-        <p>No projects have been added yet.</p>
-    </div>
-{% endif %}
+</section>
 {% endblock %}

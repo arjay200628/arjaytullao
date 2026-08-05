@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Testimonials | My Portfolio{% endblock %}
+
+{% block content %}
+<section class="mb-5">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+        <div>
+            <h2 class="section-title">Testimonials</h2>
+            <p class="section-text">Read short feedback from people who have seen my work or collaborated with me.</p>
+        </div>
+        <a href="{% url 'testimony_create' %}" class="btn btn-primary btn-primary-custom">Leave a Testimony</a>
+    </div>
+    <div class="row g-4">
+        {% if testimonies %}
+            {% for testimony in testimonies %}
+            <div class="col-md-6">
+                <div class="testimonial-card h-100 p-4">
+                    <div class="testimonial-quote mb-3">“</div>
+                    <blockquote>
+                        {{ testimony.content|truncatewords:30 }}
+                    </blockquote>
+                    <p class="mt-4 mb-0 fw-semibold">— {{ testimony.full_name }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="testimonial-card p-4">
+                    <p class="mb-0">No testimonies have been added yet.</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

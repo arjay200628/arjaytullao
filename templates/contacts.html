@@ -1,16 +1,73 @@
 {% extends 'base.html' %}
 
-{% block title %}Contacts | My Portfolio{% endblock %}
+{% block title %}Contact | My Portfolio{% endblock %}
 
 {% block content %}
-<div class="card" style="min-height: 140px; max-width: 700px; margin: 40px auto; text-align: center;">
-    <h1>Contact Me</h1>
-    {% if personal_info %}
-    <p><strong>Email:</strong> {{ personal_info.email }}</p>
-    <p><strong>Phone:</strong> {{ personal_info.contact_number }}</p>
-    <p><strong>Address:</strong> {{ personal_info.address }}</p>
-    {% else %}
-    <p>No contact information has been added yet.</p>
-    {% endif %}
-</div>
+<section class="mb-5">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-text">Use the form to send a quick message, or reach me through the details below.</p>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="contact-card p-4 h-100">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-envelope-fill me-3" style="color: var(--primary-green);"></i>
+                    <h5 class="contact-title mb-0">Email</h5>
+                </div>
+                <p class="mb-0 text-muted">{{ personal_info.email }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="contact-card p-4 h-100">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-telephone-fill me-3" style="color: var(--primary-green);"></i>
+                    <h5 class="contact-title mb-0">Phone</h5>
+                </div>
+                <p class="mb-0 text-muted">{{ personal_info.contact_number }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="contact-card p-4 h-100">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-geo-alt-fill me-3" style="color: var(--primary-green);"></i>
+                    <h5 class="contact-title mb-0">Address</h5>
+                </div>
+                <p class="mb-0 text-muted">{{ personal_info.address }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="card-custom p-4 p-md-5">
+    <h3 class="section-title">Send an Inquiry</h3>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">First name</label>
+                {{ form.first_name }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Last name</label>
+                {{ form.last_name }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Contact number</label>
+                {{ form.contact_number }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="col-12">
+                <label class="form-label">Address</label>
+                {{ form.address }}
+            </div>
+            <div class="col-12">
+                <label class="form-label">Message</label>
+                {{ form.message }}
+            </div>
+        </div>
+        <button class="btn btn-primary btn-primary-custom mt-4" type="submit">Send Inquiry</button>
+    </form>
+</section>
 {% endblock %}

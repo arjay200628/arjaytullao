@@ -3,15 +3,47 @@
 {% block title %}Personal Information | My Portfolio{% endblock %}
 
 {% block content %}
-<div class="card">
-    <h1>Personal Information</h1>
+<div class="card-custom p-4 p-md-5">
+    <h1 class="section-title mb-3">Personal Information</h1>
     {% if personal_info %}
-    <p><strong>First Name:</strong> {{ personal_info.first_name }}</p>
-    <p><strong>Middle Name:</strong> {{ personal_info.middle_name }}</p>
-    <p><strong>Last Name:</strong> {{ personal_info.last_name }}</p>
-    <p><strong>Contact Number:</strong> {{ personal_info.contact_number }}</p>
-    <p><strong>Email:</strong> {{ personal_info.email }}</p>
-    <p><strong>Address:</strong> {{ personal_info.address }}</p>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card-custom p-3 h-100">
+                <p class="mb-1 fw-semibold">First Name</p>
+                <p class="text-muted mb-0">{{ personal_info.first_name }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-custom p-3 h-100">
+                <p class="mb-1 fw-semibold">Middle Name</p>
+                <p class="text-muted mb-0">{{ personal_info.middle_name }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-custom p-3 h-100">
+                <p class="mb-1 fw-semibold">Last Name</p>
+                <p class="text-muted mb-0">{{ personal_info.last_name }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-custom p-3 h-100">
+                <p class="mb-1 fw-semibold">Contact Number</p>
+                <p class="text-muted mb-0">{{ personal_info.contact_number }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-custom p-3 h-100">
+                <p class="mb-1 fw-semibold">Email</p>
+                <p class="text-muted mb-0">{{ personal_info.email }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-custom p-3 h-100">
+                <p class="mb-1 fw-semibold">Address</p>
+                <p class="text-muted mb-0">{{ personal_info.address }}</p>
+            </div>
+        </div>
+    </div>
     {% else %}
     <p>No personal information has been added yet.</p>
     {% endif %}

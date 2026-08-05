@@ -1,6 +1,8 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic import ListView
 
-from .models import PersonalInformation, Project
+from .forms import InquiryForm, ProjectForm, TestimonyForm
+from .models import Inquiry, PersonalInformation, Project, Testimony
 
 
 def home(request):
@@ -28,6 +30,50 @@ def project_detail(request, pk):
     return render(request, 'project_detail.html', {'project': project})
 
 
-def contacts(request):
+def project_create(request):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('projects')
+    else:
+        form = ProjectForm()
+    return render(request, 'project_create.html', {'form': form})
+
+
+def contact_inquiry(request):
     personal_info = PersonalInformation.objects.first()
-    return render(request, 'contacts.html', {'personal_info': personal_info})
+    if request.method == 'POST':
+        form = InquiryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contacts')
+    else:
+        form = InquiryForm()
+    return render(request, 'contacts.html', {
+        'personal_info': personal_info,
+        'form': form,
+    })
+
+
+def testimony_create(request):
+    if request.method == 'POST':
+        form = TestimonyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('testimonials')
+    else:
+        form = TestimonyForm()
+    return render(request, 'testimony_form.html', {'form': form})
+
+
+class TestimonyListView(ListView):
+    model = Testimony
+    template_name = 'testimonials.html'
+    context_object_name = 'testimonies'
+    ordering = ['-posted_at']
+
+
+def testimony_detail(request, pk):
+    testimony = get_object_or_404(Testimony, pk=pk)
+    return render(request, 'testimony_detail.html', {'testimony': testimony})

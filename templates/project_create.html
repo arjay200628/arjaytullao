@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Add New Project | My Portfolio{% endblock %}
+
+{% block content %}
+<div class="card-custom p-4 p-md-5 form-card mx-auto" style="max-width: 720px;">
+    <h2 class="section-title mb-4">Add New Project</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group"> {{ form.project_name.label_tag }} {{ form.project_name }} </div>
+        <div class="form-group"> {{ form.description.label_tag }} {{ form.description }} </div>
+        <div class="form-group"> {{ form.tech_stack.label_tag }} {{ form.tech_stack }} </div>
+        <div class="form-group"> {{ form.link.label_tag }} {{ form.link }} </div>
+        <button class="btn btn-primary btn-primary-custom" type="submit">Save Project</button>
+    </form>
+</div>
+{% endblock %}
