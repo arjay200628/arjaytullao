@@ -17,9 +17,13 @@
             <div class="col-md-6">
                 <div class="project-card h-100 p-4">
                     <h5 class="project-title">{{ project.project_name }}</h5>
-                    <p class="text-muted">{{ project.description|truncatewords:25 }}</p>
-                    <div class="mb-3">
-                        <span class="badge-soft me-2">{{ project.tech_stack }}</span>
+                    <p class="text-muted">{{ project.description|truncatechars:120 }}</p>
+                    <div class="mb-3 d-flex flex-wrap gap-2">
+                        {% for tech in project.tech_stacks.all %}
+                            <span class="badge-soft">{{ tech.name }}</span>
+                        {% empty %}
+                            <span class="badge-soft">No tech stack added</span>
+                        {% endfor %}
                     </div>
                     <a href="{% url 'project_detail' project.pk %}" class="btn btn-outline-custom">View Details</a>
                 </div>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Tech Stack | My Portfolio{% endblock %}
+
+{% block content %}
+<div class="card-custom p-4 p-md-5 form-card mx-auto" style="max-width: 520px;">
+    <h2 class="section-title mb-4">Add New Tech Stack</h2>
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            Please enter a valid tech stack name.
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+        </div>
+        <button type="submit" class="btn btn-primary btn-primary-custom">Save Tech Stack</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-custom ms-2">Back to Dashboard</a>
+    </form>
+</div>
+{% endblock %}

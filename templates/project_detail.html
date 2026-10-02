@@ -6,13 +6,17 @@
 <div class="card-custom p-4 p-md-5">
     <h1 class="section-title mb-3">{{ project.project_name }}</h1>
     <p class="section-text">{{ project.description }}</p>
-    {% if project.tech_stack %}
-    <div class="mb-3">
-        <span class="badge-soft">{{ project.tech_stack }}</span>
+
+    {% if project.tech_stacks.all %}
+    <div class="mb-3 d-flex flex-wrap gap-2">
+        {% for tech in project.tech_stacks.all %}
+            <span class="badge-soft">{{ tech.name }}</span>
+        {% endfor %}
     </div>
     {% endif %}
+
     {% if project.link %}
-    <p class="mb-3"><strong>Project link:</strong> <a href="{{ project.link }}" class="text-decoration-none" style="color: var(--primary-green);">{{ project.link }}</a></p>
+    <p class="mb-3"><strong>Project link:</strong> <a href="{{ project.link }}" class="text-decoration-none" style="color: var(--primary-green);" target="_blank" rel="noreferrer">{{ project.link }}</a></p>
     {% endif %}
     <a href="{% url 'projects' %}" class="btn btn-outline-custom mt-3">Back to projects</a>
 </div>

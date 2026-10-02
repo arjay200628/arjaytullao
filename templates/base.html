@@ -180,13 +180,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about_me' %}">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'personal_information' %}">Info</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}">Contact</a></li>
+                <li class="nav-item ms-lg-3">
+                    <a class="btn btn-primary btn-primary-custom" href="{% url 'admin_login' %}">Sign In</a>
+                </li>
             </ul>
         </div>
     </div>

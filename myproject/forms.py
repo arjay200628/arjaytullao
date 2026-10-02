@@ -1,17 +1,46 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-from .models import Inquiry, Project, Testimony
+from .models import Inquiry, Project, TechStack, Testimony
+
+
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'input-field'})
 
 
 class ProjectForm(forms.ModelForm):
+    tech_stacks = forms.ModelMultipleChoiceField(
+        queryset=TechStack.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=True,
+    )
+
     class Meta:
         model = Project
-        fields = ['project_name', 'description', 'tech_stack', 'link']
+        fields = ['project_name', 'description', 'tech_stacks', 'link']
         widgets = {
             'project_name': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Project name'}),
             'description': forms.Textarea(attrs={'class': 'input-field', 'rows': 5, 'placeholder': 'Project description'}),
-            'tech_stack': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Tech stack'}),
             'link': forms.URLInput(attrs={'class': 'input-field', 'placeholder': 'Project link'}),
+        }
+
+
+class TechStackForm(forms.ModelForm):
+    class Meta:
+        model = TechStack
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Tech stack name'}),
         }
 
 

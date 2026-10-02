@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | My Portfolio{% endblock %}
+
+{% block content %}
+<section class="mb-5">
+    <div class="d-flex justify-content-between align-items-center flex-column flex-md-row gap-3 mb-4">
+        <div>
+            <h2 class="section-title">Dashboard</h2>
+            <p class="section-text mb-0">Manage your portfolio data as the authenticated admin.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{% url 'project_create' %}" class="btn btn-primary btn-primary-custom">Create Project</a>
+            <a href="{% url 'tech_stack_create' %}" class="btn btn-outline-custom">Create Tech Stack</a>
+            <a href="{% url 'logout' %}" class="btn btn-outline-custom">Logout</a>
+        </div>
+    </div>
+
+    <div class="card-custom p-4 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-column flex-md-row gap-2">
+            <h3 class="project-title mb-0">Projects</h3>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Description</th>
+                        <th>Tech Stack</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects %}
+                    <tr>
+                        <td>{{ project.project_name }}</td>
+                        <td>{{ project.description|truncatechars:50 }}</td>
+                        <td>
+                            {% for tech in project.tech_stacks.all %}
+                                {{ tech.name }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                —
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% if project.link %}
+                                <a href="{{ project.link }}" target="_blank" rel="noreferrer">Open</a>
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">No projects found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card-custom p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-column flex-md-row gap-2">
+            <h3 class="project-title mb-0">Tech Stacks</h3>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>Tech Stack Name</th>
+                        <th>Project It Was Used</th>
+                        <th>Date Added</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tech in tech_stacks %}
+                    <tr>
+                        <td>{{ tech.name }}</td>
+                        <td>
+                            {% for project in tech.projects.all %}
+                                {{ project.project_name }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                —
+                            {% endfor %}
+                        </td>
+                        <td>{{ tech.created_at|date:'M d, Y' }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">No tech stacks found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
