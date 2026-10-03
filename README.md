@@ -61,7 +61,7 @@ This is a Django-based personal portfolio website with public portfolio pages an
 
    ```env
    SECRET_KEY=replace-with-your-secret-key
-   DEBUG=True
+   DEBUG=False
    ALLOWED_HOSTS=localhost,127.0.0.1
    ```
 
