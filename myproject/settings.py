@@ -31,9 +31,11 @@ def load_environment_variables():
 
 load_environment_variables()
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-c5(w2$y9tr2y_#&#q7lm=#e7hz20s%^qgjcfl8my-bk5%a$y-g')
-DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
-ALLOWED_HOSTS = [host.strip() for host in os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') if host.strip()]
+SECRET_KEY = 'django-insecure-c5(w2$y9tr2y_#&#q7lm=#e7hz20s%^qgjcfl8my-bk5%a$y-g'
+DEBUG = False
+ALLOWED_HOSTS = ['localhost',
+                 '127.0.0.1'
+                 ]
 
 
 # Application definition
