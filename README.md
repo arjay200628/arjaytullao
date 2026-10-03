@@ -81,6 +81,7 @@ This is a Django-based personal portfolio website with public portfolio pages an
 
    ```text
    http://127.0.0.1:8000/
+   
    ```
 
 ## Admin Access
@@ -95,6 +96,7 @@ Then open the admin sign-in page:
 
 ```text
 http://127.0.0.1:8000/admin-login/
+http://name.pythonanywhere.com/admin-login/
 ```
 
 Only superusers can log in here. Regular users are blocked.
@@ -105,6 +107,7 @@ A user registration page is available here:
 
 ```text
 http://127.0.0.1:8000/register/
+http://name.pythonanywhere.com/register/
 ```
 
 This is for creating a regular user account. The login page still only accepts superusers.
@@ -115,6 +118,7 @@ After logging in as the admin, open:
 
 ```text
 http://127.0.0.1:8000/dashboard/
+http://name.pythonanywhere.com/dashboard/
 ```
 
 The dashboard includes:
